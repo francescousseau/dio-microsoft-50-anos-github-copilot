@@ -1,0 +1,41 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.tox/
+*.egg-info/
+dist/
+build/
+.coverage
+coverage.xml
+
+# Rust
+target/
+**/target/
+# Cargo.lock: normalmente comita-se para aplicações; remova a linha abaixo se preferir commitar o Cargo.lock
+# Cargo.lock
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+
+# Logs
+*.log
