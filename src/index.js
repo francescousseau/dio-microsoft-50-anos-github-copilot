@@ -49,26 +49,50 @@ function detectBrand(number) {
 		}
 	}
 
+	let trieMatch = null;
 	if (_prefixTrie) {
-		const found = searchTrie(_prefixTrie, n);
-		if (found) return found;
+		const t = searchTrie(_prefixTrie, n);
+		if (t) trieMatch = t; // { brand, length }
 	}
 
 	// Fallback estático mínimo
+	// Ordem importante: padrões mais específicos devem vir antes de padrões genéricos
 	const fallback = [
-		['Visa', /^4/],
-		['Mastercard', /^(5[1-5]|2(2[2-9]|[3-6][0-9]|7[01]|720))/],
-		['American Express', /^3[47]/],
-		['Diners Club', /^(30[0-5]|36|38|39)/],
-		['Discover', /^(6011|65|64[4-9]|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]))/],
-		['JCB', /^35(2[8-9]|[3-8][0-9])?/],
-		['enRoute', /^(2014|2149)/],
-		['Voyager', /^8699/],
+		['Elo', /^(401178|401179|431274|438935|457631|457632|504175|627780|636297|636368)/],
 		['Hipercard', /^6062/],
 		['Aura', /^50/],
-		['Elo', /^(401178|401179|431274|438935|457631|457632|504175|627780|636297|636368)/],
+		['Voyager', /^8699/],
+		['enRoute', /^(2014|2149)/],
+		['JCB', /^35(2[8-9]|[3-8][0-9])?/],
+		['Discover', /^(6011|65|64[4-9]|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]))/],
+		['Diners Club', /^(30[0-5]|36|38|39)/],
+		['American Express', /^3[47]/],
+		['Mastercard', /^(5[1-5]|2(2[2-9]|[3-6][0-9]|7[01]|720))/],
+		// Visa é um prefixo genérico (/^4/) e deve ser verificado por último
+		['Visa', /^4/],
 	];
-	for (const [name, rx] of fallback) if (rx.test(n)) return name;
+
+	// Encontra melhor correspondência no fallback (prefixo mais longo)
+	let bestFallback = null;
+	let bestFallbackLen = 0;
+	for (const [name, rx] of fallback) {
+		const m = rx.exec(n);
+		if (m && m[0]) {
+			const len = m[0].length;
+			if (len > bestFallbackLen) {
+				bestFallbackLen = len;
+				bestFallback = name;
+			}
+		}
+	}
+
+	// Se houver correspondência na trie e no fallback, escolhe a mais específica (maior comprimento)
+	if (trieMatch && bestFallback) {
+		if ((trieMatch.length || 0) >= bestFallbackLen) return trieMatch.brand;
+		return bestFallback;
+	}
+	if (trieMatch) return trieMatch.brand;
+	if (bestFallback) return bestFallback;
 
 	return 'Desconhecida';
 }
@@ -126,13 +150,23 @@ function buildPrefixTrieFromAssets() {
 function searchTrie(trie, digits) {
 	let node = trie;
 	let found = null;
+	let depth = 0;
+	let foundDepth = 0;
 	for (const ch of digits) {
 		if (!node) break;
-		if (node.brand) found = node.brand;
+		depth += 1;
+		if (node.brand) {
+			found = node.brand;
+			foundDepth = depth - 1;
+		}
 		node = node.children[ch];
 	}
-	if (node && node.brand) found = node.brand;
-	return found;
+	if (node && node.brand) {
+		found = node.brand;
+		foundDepth = depth;
+	}
+	if (!found) return null;
+	return { brand: found, length: foundDepth };
 }
 
 
