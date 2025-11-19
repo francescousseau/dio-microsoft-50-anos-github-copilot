@@ -23,7 +23,7 @@ coverage.xml
 target/
 **/target/
 # Cargo.lock: normalmente comita-se para aplicações; remova a linha abaixo se preferir commitar o Cargo.lock
-# Cargo.lock
+Cargo.lock
 
 # Editor / OS
 .DS_Store
