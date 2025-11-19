@@ -234,13 +234,6 @@ Como contribuir (passo a passo):
 
 6. Aguarde revisão; responda a comentários e ajuste o PR conforme solicitado.
 
-Checklist para Pull Requests:
-
-- [ ] Adicionei/atualizei testes cobrindo as mudanças.
-- [ ] Rodei `npm test` / `python3 tests/run_manual_tests.py` / `cargo build` localmente e tudo passa.
-- [ ] Mantive o `readme.md` atualizado com novas instruções quando necessário.
-- [ ] Mensagem de commit clara e branch com nome descritivo.
-
 
 ## Licença
 
