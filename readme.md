@@ -2,12 +2,11 @@
 
 <p align="center">
   <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-ES2020-yellow?style=for-the-badge&logo=javascript&logoColor=black" />
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python&logoColor=white" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12+-blue?style=for-the-badge&logo=python&logoColor=white" />
   <img alt="Rust" src="https://img.shields.io/badge/Rust-stable-orange?style=for-the-badge&logo=rust&logoColor=white" />
 </p>
 
 <p align="center">
-  <img alt="Build status" src="https://github.com/francescousseau/dio-microsoft-50-anos-github-copilot/actions/workflows/ci.yml/badge.svg" />
   <img alt="License" src="https://img.shields.io/github/license/francescousseau/dio-microsoft-50-anos-github-copilot?style=flat-square" />
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/francescousseau/dio-microsoft-50-anos-github-copilot?style=flat-square&label=%C3%9Altimo%20commit" />
 </p>
