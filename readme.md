@@ -142,8 +142,46 @@ Digite cartões sucessivamente e pressione ENTER vazio para sair.
 
 ### Node.js
 
+Execute os testes Node definidos em `test/`:
+
 ```bash
+npm test
+# ou
 node test/validateCard.test.js
+```
+
+### Python
+
+Há dois modos de testar a implementação Python:
+
+- Com `pytest` (se estiver disponível):
+
+```bash
+# instale pytest (recomendado em virtualenv)
+python3 -m pip install pytest --user
+pytest -q
+```
+
+- Sem `pytest`: um runner manual foi incluído para ambientes sem `pip`:
+
+```bash
+python3 tests/run_manual_tests.py
+```
+
+### Rust
+
+Compile e execute com `cargo`:
+
+```bash
+cargo build --release
+./target/release/card_validator_rust "4111111111111111"
+```
+
+Se preferir compilar diretamente com `rustc` (rápido para testes locais):
+
+```bash
+rustc src/main.rs -O -o target/card_validator_rust
+./target/card_validator_rust "4111111111111111"
 ```
 
 ---
@@ -157,6 +195,8 @@ Cada bandeira segue padrões de prefixos e tamanhos:
 - Amex → 34 ou 37  
 - JCB → 3528–3589  
 - Elo, Hipercard, Aura → múltiplos ranges exclusivos  
+
+**Observação:** a lista completa de prefixos/ranges está em `assets/cartoes.txt` e é usada pelas implementações para gerar correspondências mais precisas.
 
 ---
 
@@ -177,6 +217,8 @@ Sugestões:
 - Testes unitários em Python e Rust  
 - API REST (FastAPI / Express)  
 - Versão Web com HTML + JS  
+
+Se quiser que eu configure um fluxo de CI (GitHub Actions) para rodar os testes Node/Python/Rust automaticamente, posso criar um workflow inicial.
 
 ---
 
