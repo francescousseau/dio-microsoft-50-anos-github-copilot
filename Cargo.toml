@@ -1,0 +1,11 @@
+[package]
+name = "card_validator_rust"
+version = "0.1.0"
+edition = "2021"
+authors = ["franc <franc@localhost>"]
+description = "Validador de cartões (Rust) - binário"
+license = "MIT"
+
+[[bin]]
+name = "card_validator_rust"
+path = "src/main.rs"
