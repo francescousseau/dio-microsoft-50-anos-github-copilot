@@ -212,13 +212,35 @@ Cada bandeira segue padrões de prefixos e tamanhos:
 
 ## Contribuição
 
-Sugestões:
+Como contribuir (passo a passo):
 
-- Testes unitários em Python e Rust  
-- API REST (FastAPI / Express)  
-- Versão Web com HTML + JS  
+1. Fork do repositório para sua conta no GitHub.
 
----
+2. Crie uma branch a partir de `main` com nome descritivo, por exemplo: `feat/add-e2e-tests` ou `fix/readme-typo`.
+
+3. Faça suas alterações localmente. Siga estas recomendações:
+
+    - Escreva/atualize testes para qualquer comportamento novo ou correção (Node: `npm test`; Python: `python3 tests/run_manual_tests.py` ou `pytest`; Rust: `cargo build --release`).
+    - Mantenha o estilo do projeto: JavaScript moderno (ES2020), Python 3.12+ idiomático e Rust formatado (`cargo fmt`) quando aplicável.
+    - Use mensagens de commit claras, por exemplo: `feat(node): add BIN detection for new issuer` ou `fix(py): handle empty input in detect_brand`.
+
+4. Faça push da sua branch para o seu fork.
+
+5. Abra um Pull Request para `francescousseau:main` descrevendo:
+
+    - O que foi alterado e por quê.
+    - Como testar localmente (comandos para rodar testes e exemplos).
+    - Quais arquivos foram afetados.
+
+6. Aguarde revisão; responda a comentários e ajuste o PR conforme solicitado.
+
+Checklist para Pull Requests:
+
+- [ ] Adicionei/atualizei testes cobrindo as mudanças.
+- [ ] Rodei `npm test` / `python3 tests/run_manual_tests.py` / `cargo build` localmente e tudo passa.
+- [ ] Mantive o `readme.md` atualizado com novas instruções quando necessário.
+- [ ] Mensagem de commit clara e branch com nome descritivo.
+
 
 ## Licença
 
