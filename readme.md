@@ -218,8 +218,6 @@ Sugestões:
 - API REST (FastAPI / Express)  
 - Versão Web com HTML + JS  
 
-Se quiser que eu configure um fluxo de CI (GitHub Actions) para rodar os testes Node/Python/Rust automaticamente, posso criar um workflow inicial.
-
 ---
 
 ## Licença
